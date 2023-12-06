@@ -22,6 +22,13 @@ bool CopyTask(TASK* dest, TASK src)
     return true;
 }
 
+bool CompareTasks(TASK listTask, const char* LookingFor)
+{
+    if (strcmp(listTask.title, LookingFor) == 0)
+        return true;
+    else
+        return false;
+}
 
 
 

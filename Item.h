@@ -16,6 +16,8 @@ TASK CreateTask(char* title, int urgencyRank);
 
 bool CopyTask(TASK* dest, TASK src);
 
+bool CompareTasks(TASK listTask, const char* LookingFor);
+
 #endif //GROUP_ASSIGNMENT_ITEM_H
 
 //Title is for the name of the task for something to search for and

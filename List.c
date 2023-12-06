@@ -42,19 +42,31 @@ void DisplayTaskManagerWhole(PLISTNODE taskmanager){
         return;
 
     do {
-        printf("\nTask: %s\nUrgency: %i\n\n", current->data.title, current->data.urgencyRank);
+        printf("Task: %s\nUrgency: %i\n\n", current->data.title, current->data.urgencyRank);
         current = current->next;
-    } while (current != NULL);
+    }while(current != NULL);
 }
 
 int GetTaskCountFromList(PLISTNODE list)
 {
     int count = 0;
     PLISTNODE current = list;
-    while(current != NULL)
-    {
+    while(current != NULL){
         count++;
         current = current->next;
     }
     return count;
+}
+
+PLISTNODE SearchForTaskInList(PLISTNODE list, const char* SearchedTask)
+{
+    PLISTNODE current = list;
+
+    while(current != NULL)
+        if(CompareTasks(current->data, SearchedTask))
+            return current;
+        else
+            current = current->next;
+
+    return (PLISTNODE)NULL;
 }

@@ -30,4 +30,6 @@ void DisplayTaskManagerWhole(PLISTNODE taskmanager);
 
 int GetTaskCountFromList(PLISTNODE list);
 
+PLISTNODE SearchForTaskInList(PLISTNODE list, const char* SearchedTask);
+
 #endif //GROUP_ASSIGNMENT_LIST_H
