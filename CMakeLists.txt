@@ -10,4 +10,4 @@ add_executable(Group_Assignment main.c
         Item.h
         Functionality.c
         Functionality.h
-        Headers.h)
+)

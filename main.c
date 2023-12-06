@@ -1,32 +1,47 @@
 #include "List.h"
+#include "Functionality.h"
+
+//Tyler
+// Add, Delete, UI, and a display
+//Me
+// Update, Search, Load, and Save
+// If we have time
+// the other 2 display
 
 int main(void)
 {
-    MANAGER managerTest = CreateTaskManager("My Tasks");
-    TASK taskTest = CreateTask("Do Laundry", 3);
+    MANAGER manager = LoadManagerFromDisk("TaskManager.txt");
 
-    AddTaskToManager(&managerTest, taskTest);
+    DisplayTaskManagerWhole(manager.managerList);
 
-    DisplayTaskManagerWhole(managerTest.managerList);
+    //AddTaskToManager(&manager, task);
+
+    //DisplayTaskManagerWhole(manager.managerList);
 
     int i = 0;
     do{
-        char buff[MAXWORD];
-        int rating;
+
+        char buff[MAXSTRING];
         printf("Enter Task Title: ");
-        fgets(buff, MAXWORD, stdin);
+        fgets(buff, MAXSTRING, stdin);
         fflush(stdin);
+
+        int rating;
         printf("Enter Urgency Rating: ");
-        scanf("%i", &rating);                //This is a test to show how the input is gonna work
-        fflush(stdin);                      // i got no clue how itll look in the funcitonality thing though
+        scanf("%i", &rating);
+        fflush(stdin);
 
         TASK task = CreateTask(buff, rating);
-        AddTaskToManager(&managerTest, task);
+        AddTaskToManager(&(manager.managerList), task);
 
         i++;
-    }while(i<4);
+    }while(i<3);
 
-    DisplayTaskManagerWhole(managerTest.managerList);
+    printf("%s\n", manager.managerName);
+
+    DisplayTaskManagerWhole(manager.managerList);
+
+    SaveManagerToDisk(manager, "TaskManager.txt");
 
     return 0;
 }

@@ -28,12 +28,12 @@ MANAGER CreateTaskManager(char* ManagerName)
     return newManager;
 }
 
-bool AddTaskToManager(MANAGER* taskmanager, TASK task)
+bool AddTaskToManager(PLISTNODE* taskmanager, TASK task)
 {
     if(taskmanager == NULL)
         return false;
 
-    return Add(&(taskmanager->managerList), task);
+    return Add(taskmanager, task);
 }
 
 void DisplayTaskManagerWhole(PLISTNODE taskmanager){
@@ -42,7 +42,19 @@ void DisplayTaskManagerWhole(PLISTNODE taskmanager){
         return;
 
     do {
-        printf("%s\n", current->data.title);
+        printf("\nTask: %s\nUrgency: %i\n\n", current->data.title, current->data.urgencyRank);
         current = current->next;
     } while (current != NULL);
+}
+
+int GetTaskCountFromList(PLISTNODE list)
+{
+    int count = 0;
+    PLISTNODE current = list;
+    while(current != NULL)
+    {
+        count++;
+        current = current->next;
+    }
+    return count;
 }

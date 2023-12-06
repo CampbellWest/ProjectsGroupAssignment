@@ -9,13 +9,10 @@
 
 typedef struct task{
     char title[MAXWORD];
-    char description[MAXSTRING];
     int urgencyRank;
 }TASK;
 
 TASK CreateTask(char* title, int urgencyRank);
-
-char* GetTaskDescription(char* title);
 
 bool CopyTask(TASK* dest, TASK src);
 

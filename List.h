@@ -24,8 +24,10 @@ MANAGER CreateTaskManager(char* ManagerName);
 
 bool Add(PLISTNODE* list, TASK task);
 
-bool AddTaskToManager(MANAGER* taskmanager, TASK task);
+bool AddTaskToManager(PLISTNODE* taskmanager, TASK task);
 
 void DisplayTaskManagerWhole(PLISTNODE taskmanager);
+
+int GetTaskCountFromList(PLISTNODE list);
 
 #endif //GROUP_ASSIGNMENT_LIST_H
