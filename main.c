@@ -16,16 +16,19 @@ int main(void)
 
     //InputTest(&(manager.managerList));
 
-    char buff[MAXWORD] = "Walk the dog";
-
-    if(SearchForTaskInList(manager.managerList, buff))
+    if(SearchForTaskInList(manager.managerList, "Walk the dogs"))
         printf("Walk the dog is in the task manager\n");
     else
         printf("Walk the dog is not in the task manager\n");
 
     printf("\n%s\n", manager.managerName);
 
-    DisplayTaskManagerWhole(manager.managerList);
+    //DisplayTaskManagerWhole(manager.managerList);
+
+    if(SelectTaskToUpdate(manager.managerList))
+        printf("Item successfully updated\n");
+    else
+        printf("Item not updated\n");
 
     SaveManagerToDisk(manager, "TaskManager.txt");
 

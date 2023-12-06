@@ -92,3 +92,48 @@ TASK LoadTaskFromDisk(FILE* fp)
 
     return CreateTask(title, urgency);
 }
+
+bool SelectTaskToUpdate(PLISTNODE list)
+{
+    DisplayTaskManagerWhole(list);
+    printf("Which task would you like to update: ");
+
+    char buffer[MAXWORD];
+    fgets(buffer, MAXWORD, stdin);
+    RemoveNewLine(buffer);
+
+    if(SearchForTaskInList(list, buffer)){
+        FindAndUpdateTaskInList(&list, buffer);
+        return true;
+    }
+    else
+        return false;
+}
+
+void FindAndUpdateTaskInList(PLISTNODE* list, char* task)
+{
+    PLISTNODE current = *list;
+
+    while(current != NULL)
+        if(CompareTasks(current->data, task))
+            current->data = UpdateTaskValues(current->data);
+        else
+            current = current->next;
+
+}
+
+TASK UpdateTaskValues(TASK task)
+{
+    printf("Current Task: %s\nUrgency: %i\n\n", task.title, task.urgencyRank);
+
+    char buffer[MAXWORD];
+    printf("Updated Task: ");
+    fgets(buffer, MAXWORD, stdin);
+    RemoveNewLine(buffer);
+
+    int urgency;
+    printf("Updated Urgency: ");
+    scanf("%i", &urgency);
+
+    return CreateTask(buffer, urgency);
+}
